@@ -1,10 +1,14 @@
 package com.nanuvem.metagui.server.sample.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.nanuvem.metagui.server.api.EntityType;
+import com.nanuvem.metagui.server.api.RelationshipType;
 import com.nanuvem.metagui.server.sample.repositories.FornecedorRepository;
 
 @Entity
@@ -21,6 +25,16 @@ public class Fornecedor {
 	private String endereco;
 	private String cep;
 	
+	@RelationshipType(composition=true)
+	@OneToMany(mappedBy="fornecedor")
+	private List<Produto> produtosFornecidos;
+	
+	public List<Produto> getProdutosFornecidos() {
+		return produtosFornecidos;
+	}
+	public void setProdutosFornecidos(List<Produto> produtosFornecidos) {
+		this.produtosFornecidos = produtosFornecidos;
+	}
 	public Long getId() {
 		return id;
 	}

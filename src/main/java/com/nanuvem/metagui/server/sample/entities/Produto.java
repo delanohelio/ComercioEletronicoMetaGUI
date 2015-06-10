@@ -3,6 +3,7 @@ package com.nanuvem.metagui.server.sample.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.nanuvem.metagui.server.api.EntityType;
 import com.nanuvem.metagui.server.sample.repositories.ProdutoRepository;
@@ -18,7 +19,15 @@ public class Produto {
 	private String nome;
 	private String codBarras;
 	private double preco;
+	@ManyToOne
+	private Fornecedor fornecedor;
 	
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
 	public Long getId() {
 		return id;
 	}
