@@ -7,12 +7,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.nanuvem.metagui.server.api.EntityType;
 import com.nanuvem.metagui.server.api.RelationshipType;
 import com.nanuvem.metagui.server.sample.repositories.FornecedorRepository;
 
 @Entity
 @EntityType(resource="fornecedores", repositoryType=FornecedorRepository.class)
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Fornecedor {
 
 	@Id

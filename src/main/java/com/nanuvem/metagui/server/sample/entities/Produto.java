@@ -5,11 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.nanuvem.metagui.server.api.EntityType;
 import com.nanuvem.metagui.server.sample.repositories.ProdutoRepository;
 
 @Entity
 @EntityType(resource="produtos", repositoryType=ProdutoRepository.class)
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Produto {
 
 	@Id
