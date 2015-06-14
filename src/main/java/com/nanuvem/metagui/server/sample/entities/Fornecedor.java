@@ -2,6 +2,7 @@ package com.nanuvem.metagui.server.sample.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Fornecedor {
 	private String cep;
 	
 	@RelationshipType(composition=true)
-	@OneToMany(mappedBy="fornecedor")
+	@OneToMany(mappedBy="fornecedor", cascade = CascadeType.ALL)
 	private List<Produto> produtosFornecidos;
 	
 	public List<Produto> getProdutosFornecidos() {
