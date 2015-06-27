@@ -1,10 +1,13 @@
 package com.nanuvem.metagui.server.sample.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.nanuvem.metagui.server.api.EntityType;
 import com.nanuvem.metagui.server.sample.repositories.VendedorRepository;
@@ -22,7 +25,16 @@ public class Vendedor {
 	private Date nascimento;
 	private String email;
 	private String matricula;
+	
+	@OneToMany(mappedBy="vendedor", cascade = CascadeType.ALL)
+	private List<Pedido> pedidosLancados;
 
+	public List<Pedido> getPedidosLancados() {
+		return pedidosLancados;
+	}
+	public void setPedidosLancados(List<Pedido> pedidosLancados) {
+		this.pedidosLancados = pedidosLancados;
+	}
 	public Long getId() {
 		return id;
 	}

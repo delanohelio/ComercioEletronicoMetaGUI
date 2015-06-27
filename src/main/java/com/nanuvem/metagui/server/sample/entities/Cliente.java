@@ -1,16 +1,22 @@
 package com.nanuvem.metagui.server.sample.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.nanuvem.metagui.server.api.EntityType;
 import com.nanuvem.metagui.server.sample.repositories.ClienteRepository;
 
 @Entity
 @EntityType(resource="clientes", repositoryType=ClienteRepository.class)
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Cliente{
 
 	@Id
@@ -23,6 +29,15 @@ public class Cliente{
 	private String email;
 	private double credito;
 	
+	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
+	private List<Pedido> pedidos;
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 	public Long getId() {
 		return id;
 	}

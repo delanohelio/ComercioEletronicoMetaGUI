@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.nanuvem.metagui.server.api.EntityType;
-import com.nanuvem.metagui.server.api.RelationshipType;
 import com.nanuvem.metagui.server.sample.repositories.FornecedorRepository;
 
 @Entity
@@ -29,7 +28,6 @@ public class Fornecedor {
 	private String endereco;
 	private String cep;
 	
-	@RelationshipType(composition=true)
 	@OneToMany(mappedBy="fornecedor", cascade = CascadeType.ALL)
 	private List<Produto> produtosFornecidos;
 	
